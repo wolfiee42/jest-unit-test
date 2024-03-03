@@ -58,3 +58,27 @@ test("this is a peanut butter", async () => {
   const data = await fetchPromise();
   expect(data).toBe("peanut Butter");
 });
+
+// mock function
+
+test("mock implementation in basic func", () => {
+  const mock = jest.fn((x) => 42 + x);
+  expect(mock(1)).toBe(43);
+  expect(mock).toHaveBeenCalledWith(1);
+});
+
+// spy function
+
+test("spying on a method of an object", () => {
+  const video = {
+    play() {
+      return true;
+    },
+  };
+
+  const spy = jest.spyOn(video, "play");
+  video.play();
+
+  expect(spy).toHaveBeenCalled();
+  spy.mockRestore();
+});
